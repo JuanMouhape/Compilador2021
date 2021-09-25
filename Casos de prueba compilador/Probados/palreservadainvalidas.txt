@@ -1,0 +1,7 @@
+FI
+TEN
+ELZE
+THEN_IF
+RETUNR
+if
+else
