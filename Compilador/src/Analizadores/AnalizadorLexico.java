@@ -197,7 +197,7 @@ public class AnalizadorLexico{
 				{M,6,M,M,6,6,M,M,M,M,M,M,M,M,M,M,M,M,M,M, M},
 				{F,6,F,F,F,F,F,F,F,F,F,F,F,F,M,F,F,F,F,F, F},
 				{F,F,F,8,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F, F},
-				{8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,F,F,F,F, 8},
+				{8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,F,8,8,8, 8},
 				{M,M,M,M,M,M,M,M,M,M,F,M,M,M,M,M,M,M,M,M, M},
 				{F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F, F},
 				{F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F, F},
@@ -205,7 +205,7 @@ public class AnalizadorLexico{
 				{13,13,13,13,14,13,13,13,13,13,13,13,13,13,13,F,M,13,13,13, 13},
 				{M,M,M,M,M,M,M,M,M,M,M,M,M,M,M,M,15,M,M,M, M},
 				{M,M,M,M,16,M,M,M,M,M,M,M,M,M,M,M,M,M,M,M, M},
-				{13,13,13,13,M,13,13,13,13,13,13,13,13,13,13,M,15,13,13,13, 13},
+				{13,13,13,13,M,13,13,13,13,13,13,13,13,13,13,M,M,13,13,13, 13},
 				{M,M,M,M,M,M,F,M,M,M,M,M,M,M,M,M,M,M,M,M, M},
 				{M,M,M,M,M,M,M,F,M,M,M,M,M,M,M,M,M,M,M,M, M},
 			};
@@ -243,11 +243,12 @@ matrizAccionesSemanticas = new AS[][] {
 	{AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS3,AS12,AS14,AS14,AS14, null},/*Cadena Multilinea*/
 	{AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS15,AS12,AS12,AS12, null},/*Cadena Multilinea*/
 	{AS12,AS12,AS12,AS12,AS14,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12, null},/*Cadena Multilinea*/
-	{AS14,AS14,AS14,AS14,AS11,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS11,AS14,AS14,AS14,AS14, null},/*Cadena Multilinea*/
+	{AS14,AS14,AS14,AS14,AS12,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS14,AS12,AS12,AS14,AS14,AS14, null},/*Cadena Multilinea*/
 	{AS12,AS12,AS12,AS12,AS12,AS12,AS14,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12, null},/*AND*/
 	{AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS14,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12,AS12, null}/*OR*/
 	};
 	}
+	
 	
 	//Metodos utilizados en las acciones semanticas
 	
@@ -340,6 +341,11 @@ matrizAccionesSemanticas = new AS[][] {
 			}
 			ultimoEstado=matrizTransicionEstados[ultimoEstado][columnaCaracter];//guarda el proximo estado 
 		}
+/*
+		if (token == null) { //para el caso del comentario, revisar***
+			return 0;
+		}
+*/		
 		if(token != null && (token.equals("ID") || token.equals("CONSTANTE") || token.equals("CADENA"))) { //todo lo valido
 			return codigosTokens.get(token); //retorno el codigo del token
 		}else if(token != null && token.equals("ERROR")){ //me trairia el error
@@ -349,13 +355,6 @@ matrizAccionesSemanticas = new AS[][] {
 		}
 	}
 	
-/*		a, (reservada, true)
-		   (reservada, false)
-	
-		get(a).keySet = Reservada, reservada
-	
-		get(a).get(reservada).toString = true, false;
-*/	
 	//me traigo la tabla de simbolos entera
 	
 	public String getDatosTablaSimbolos() {
@@ -409,6 +408,6 @@ matrizAccionesSemanticas = new AS[][] {
 		int cantidad_lineas= lexico.allLines.size(); //cantidad de lineas del archivo que leo
 		
 		for (int i=1; i<= cantidad_lineas; i++)
-			System.out.println( lexico.yylex()); //imprime los token de cada linea
+				System.out.println( lexico.yylex()); //imprime los token de cada linea
 	}
 }
