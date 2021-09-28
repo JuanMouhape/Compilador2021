@@ -71,8 +71,8 @@ public class AnalizadorLexico{
 			tablaSimbolos.get("IF").put("Reservada", true);
 			tablaSimbolos.put("ELSE", new HashMap<String, Object>());
 			tablaSimbolos.get("ELSE").put("Reservada", true);
-			tablaSimbolos.put("END_IF", new HashMap<String, Object>());
-			tablaSimbolos.get("END_IF").put("Reservada", true);
+			tablaSimbolos.put("ENDIF", new HashMap<String, Object>());
+			tablaSimbolos.get("ENDIF").put("Reservada", true);
 			tablaSimbolos.put("PRINT", new HashMap<String, Object>());
 			tablaSimbolos.get("PRINT").put("Reservada", true);
 			//tablaSimbolos.put("INT", new HashMap<String, Object>());
@@ -125,7 +125,7 @@ public class AnalizadorLexico{
 			codigosTokens.put(">", 62);
 			codigosTokens.put("_", 95);
 			codigosTokens.put("ID", 257);
-			codigosTokens.put("CONSTANTE", 258);
+			codigosTokens.put("CTE", 258);
 			codigosTokens.put("IF", 259);
 			codigosTokens.put("ELSE", 260);
 			codigosTokens.put("END_IF", 261);
@@ -346,7 +346,7 @@ matrizAccionesSemanticas = new AS[][] {
 			return 0;
 		}
 */		
-		if(token != null && (token.equals("ID") || token.equals("CONSTANTE") || token.equals("CADENA"))) { //todo lo valido
+		if(token != null && (token.equals("ID") || token.equals("CTE") || token.equals("CADENA"))) { //todo lo valido
 			return codigosTokens.get(token); //retorno el codigo del token
 		}else if(token != null && token.equals("ERROR")){ //me trairia el error
 			return codigosTokens.get(token); //retorno el codigo del token

@@ -24,7 +24,7 @@ public class AS6 extends AS{
 		if ((new BigDecimal (this.rangoMaximoPermitido).compareTo(bd) >= 0) && (new BigDecimal (this.rangoMinimoPermitido).compareTo(bd) <= 0)) { //esta dentro del rango permitido
 			lexico.agregarLexemaATS(); //agrego a tabla de simbolos
 			lexico.agregarAtributoLexema(bd.toString(), "Tipo", "long");//agrego el nombre del tipo de constante que agregue anteriormente
-			return "CONSTANTE";
+			return "CTE";
 		}
 		lexico.addError("Error: constante long fuera de rango"); 
 		return "ERROR";

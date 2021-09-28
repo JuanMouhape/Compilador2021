@@ -28,7 +28,7 @@ public class AS5 extends AS{
 		if (this.rangoPermitido(Float.valueOf(lexico.getLexema().toString().replace('S', 'E')))) {
 			lexico.agregarLexemaATS();
 			lexico.agregarAtributoLexema(lexico.getLexema().toString(), "Tipo", "Single");
-		return "CONSTANTE";	
+		return "CTE";	
 		}
 		lexico.addError("Error: constante long fuera de rango"); 
 		return "ERROR";
